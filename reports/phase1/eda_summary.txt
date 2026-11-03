@@ -1,0 +1,35 @@
+=== STATISTICAL SUMMARY OF EXPLORATORY DATA ANALYSIS ===
+
+1. RATING DISTRIBUTION & CLASS IMBALANCE:
+   - Rating 1 Stars: 5.82%
+   - Rating 2 Stars: 3.92%
+   - Rating 3 Stars: 6.65%
+   - Rating 4 Stars: 14.73%
+   - Rating 5 Stars: 68.88%
+   -> Positive Bias (Rating >= 4): 83.61%
+
+2. TEXT LENGTH CHARACTERISTICS (WORDS):
+   - Mean Word Count: 52.75
+   - Median Word Count: 25.00
+   - Standard Deviation: 91.72
+   - Short Reviews (<= 5 words): 3130 (15.65%)
+   - Long Detailed Reviews (>= 100 words): 2739 (13.69%)
+
+3. PRODUCT PRICING (USD):
+   - Available price records: 13,287
+   - Median Price: $25.05
+   - Mean Price: $63.31
+   - 25th - 75th Percentile: $12.99 - $59.99
+   - Max Price: $4199.00
+
+4. HELPFULNESS & MULTIMODAL CORRELATIONS:
+   - Overall Helpfulness Ratio: 28.88%
+   - Helpfulness for Reviews WITH user images: 53.91%
+   - Helpfulness for Reviews WITHOUT images: 27.64%
+
+Pearson Correlation Matrix:
+                     rating  review_word_count  price_numeric  helpful_vote
+rating             1.000000          -0.083704      -0.006421     -0.007507
+review_word_count -0.083704           1.000000       0.157340      0.184028
+price_numeric     -0.006421           0.157340       1.000000      0.049269
+helpful_vote      -0.007507           0.184028       0.049269      1.000000
