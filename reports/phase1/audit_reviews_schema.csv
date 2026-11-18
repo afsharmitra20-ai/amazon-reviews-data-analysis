@@ -1,11 +1,11 @@
 table,column,dtype,missing_count,missing_pct,unique_count
 reviews,rating,float64,0,0.0,5
-reviews,title,object,0,0.0,14591
-reviews,text,object,0,0.0,19152
-reviews,images,object,0,0.0,947
-reviews,asin,object,0,0.0,12730
-reviews,parent_asin,object,0,0.0,11423
-reviews,user_id,object,0,0.0,14368
+reviews,title,str,2,0.01,14591
+reviews,text,str,4,0.02,19152
+reviews,images,object,19054,95.27,947
+reviews,asin,str,0,0.0,12730
+reviews,parent_asin,str,0,0.0,11423
+reviews,user_id,str,0,0.0,14368
 reviews,timestamp,int64,0,0.0,19991
 reviews,verified_purchase,bool,0,0.0,2
 reviews,helpful_vote,int64,0,0.0,94

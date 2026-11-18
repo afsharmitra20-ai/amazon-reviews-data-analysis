@@ -1,13 +1,13 @@
 modality_aspect,available_count,coverage_percentage
 Review Text (Non-empty),19996,99.98
-Review Title (Non-empty),20000,100.0
+Review Title (Non-empty),19998,99.99
 Any Text Available,20000,100.0
 User Uploaded Images,946,4.73
 Product Catalog Images,19993,99.96
 Valid Numeric Price,13287,66.44
 Brand / Store Name,19912,99.56
 Product Feature List,18900,94.5
-Catalog Rating History,20000,100.0
+Catalog Rating History (CRITICAL LEAKAGE RISKS),20000,100.0
 Modality: Text + Price,13287,66.44
 Modality: Text + Price + Store,13276,66.38
 Modality: Text + Product Image,19993,99.96

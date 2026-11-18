@@ -1,16 +1,17 @@
-# Data Ingestion Documentation
+# Data Ingestion & Sampling Documentation
 
 ## Dataset Source
-- **Platform:** Hugging Face Datasets (`McAuley-Lab/Amazon-Reviews-2023`)
-- **Subset:** `Musical_Instruments`
-- **Modality:** Reviews (Text, Ratings, User Images) + Metadata (Item features, Price, Descriptions, Catalog Images)
+- **Official Repository Endpoint:** UCSD McAuley Lab (`https://mcauleylab.ucsd.edu/public_datasets/data/amazon_2023/raw`)
+- **Subset Category:** `Musical_Instruments`
+- **Modality Coverage:** Reviews (`Musical_Instruments.jsonl.gz`) and Matching Metadata (`meta_Musical_Instruments.jsonl.gz`).
 
-## Sampling Methodology
-Due to the massive footprint of the full 2023 corpus, streaming ingestion (`streaming=True`) is employed:
-1. `raw_review_Musical_Instruments` is pseudo-randomly streamed with fixed seed `42` to collect a representative sample of 20,000 interactions.
-2. Distinct `parent_asin` identifiers are mapped directly to `raw_meta_Musical_Instruments` via streaming filter.
-3. Artifacts are serialized in Apache Parquet format inside `data/raw/` (ignored by Git tracking).
+## Ingestion Architecture & Systematic Stride Sampling
+Because the complete uncompressed corpus spans several gigabytes, streaming ingestion is conducted line-by-line directly over HTTP:
+1. **Systematic Stride Sampling:** A fixed stride sampling interval (`step_skip = 5`) is enforced across the stream to prevent sampling bias localized to the beginning of the file, capturing an evenly distributed set of 20,000 interactions.
+2. **Metadata Linkage:** Unique product identifiers (`parent_asin`) collected from the reviews stream are matched against the product metadata stream.
+3. **Missing Value Preservation:** True missing elements (`null`/`None`) are preserved during ingestion to prevent schema masking.
+4. **Local Artifacts:** Data artifacts are serialized in Apache Parquet format inside `data/raw/` (excluded from Git tracking via `.gitignore`).
 
-## Replication Command
-```bash
-python src/data_loader.py --size 20000 --seed 42 --out_dir data/raw
+## Reproduction Command
+```powershell
+python src/data_loader.py --size 20000

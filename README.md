@@ -2,6 +2,8 @@
 **Data Analysis Course Project - Fall 1405**  
 **Track B: Amazon Reviews'23 | Phase 1 Completed**
 
+Github repo: https://afsharmitra20-ai:@github.com/afsharmitra20-ai/amazon-reviews-data-analysis.git
+
 ## Overview
 This repository contains the end-to-end data analysis pipeline for the **Musical Instruments** category from the Amazon Reviews 2023 corpus. The project explores the interaction between review text and product metadata (pricing, store/brand, catalog images) to understand customer satisfaction and predict review ratings without information leakage.
 

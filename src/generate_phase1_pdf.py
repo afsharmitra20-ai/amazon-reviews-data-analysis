@@ -1,12 +1,5 @@
 """
-Phase 1 Comprehensive PDF Report Generator.
-Incorporates:
-1. Problem Motivation & Business Understanding
-2. Three Candidate Questions & Selection Justification (Explicitly required by guidelines)
-3. Full Modality & Data Quality Audit
-4. Exploratory Data Analysis & Visualizations
-5. Detailed Data Leakage Audit (User, Item, Temporal) & Split Design
-6. Explicit Baseline Definitions
+Phase 1 Comprehensive PDF Report Generator (Updated with Leakage Auditing).
 """
 
 import os
@@ -30,7 +23,7 @@ def build_pdf():
     )
 
     styles = getSampleStyleSheet()
-    
+
     title_style = ParagraphStyle(
         "DocTitle",
         parent=styles["Heading1"],
@@ -185,24 +178,24 @@ def build_pdf():
     # --- SECTION 4 ---
     story.append(Paragraph("4. Data Leakage Audit & Experimental Split Design", h1_style))
     story.append(Paragraph(
-        "A conventional <i>Random Row Split</i> is scientifically invalid for this problem due to three distinct leakage vectors:",
+        "A rigorous leakage audit identified several critical vulnerabilities that govern our pipeline design:",
         body_style
     ))
     story.append(Paragraph(
-        "<b>1. User-Level Leakage:</b> A reviewer evaluating multiple instruments shares identical vocabulary patterns and rating habits. Overlapping users between splits leads to overly optimistic evaluation.",
+        "<b>1. Catalog Rating Target Leakage (CRITICAL):</b> The metadata attributes <code>average_rating</code> and <code>rating_number</code> represent historical aggregates computed over the entire lifecycle, implicitly pooling target ratings from both future and test sets. <i>These features are explicitly excluded from model inputs.</i>",
         bullet_style
     ))
     story.append(Paragraph(
-        "<b>2. Item / Cold-Start Leakage:</b> If reviews of the same instrument appear in both training and test sets, the model simply memorizes product-level average ratings rather than learning semantic sentiment.",
+        "<b>2. Item / Cold-Start Leakage:</b> Random row splits leak item-specific quality biases across splits. An <b>Item-Disjoint Partition (70% Train, 15% Validation, 15% Test)</b> grouped on <code>parent_asin</code> is strictly enforced.",
         bullet_style
     ))
     story.append(Paragraph(
-        "<b>3. Temporal Leakage:</b> Utilizing future product feedback to predict past reviews violates chronological causality.",
+        "<b>3. User-Level Leakage:</b> Evaluators writing multiple reviews introduce idiosyncratic stylistic leakage; grouping prevents memorizing author-specific linguistic priors.",
         bullet_style
     ))
     story.append(Paragraph(
-        "<b>Adopted Partition Strategy:</b> We implement an <b>Item-Disjoint Partition (70% Train, 15% Validation, 15% Test)</b> grouped strictly on <code>parent_asin</code> with fixed seed 42. Unseen products in the test set guarantee an authentic cold-start evaluation.",
-        body_style
+        "<b>4. Preprocessing Leakage:</b> All scaling parameters, TF-IDF vocabularies, and missingness imputations are strictly learned on the training folds only.",
+        bullet_style
     ))
 
     # --- SECTION 5 ---
