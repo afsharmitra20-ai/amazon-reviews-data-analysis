@@ -1,0 +1,11 @@
+cluster_id,count,share_pct,mean_rating,critical_rate_pct,five_star_pct,median_price_usd,mean_price_usd,missing_price_pct,mean_word_count,audio_mentions,build_mentions,verified_pct,top_distinctive_terms
+0,1120,8.47,4.288,10.54,65.0,24.99,29.53,28.48,53.3,0.21,0.28,91.0,"picks, sticks, reeds, pick, look, grip, work, ones"
+1,1689,12.77,4.436,8.29,70.69,26.99,53.12,30.91,84.3,1.12,0.34,85.6,"strings, guitar, string, guitars, tuner, tune, tuning, ukulele"
+2,1577,11.93,4.556,5.9,76.03,26.99,41.93,34.18,8.6,0.08,0.05,95.8,"stars, stars great, stars good, stars works, stars nice, stars love, stars perfect, star"
+3,1313,9.93,4.709,3.2,82.25,26.99,44.64,27.11,13.3,0.04,0.08,97.1,"good, great, product, great product, good good, quality, great great, price"
+4,1089,8.24,4.23,11.57,60.51,26.99,71.91,30.03,97.9,0.9,0.27,83.0,"mic, microphone, recording, mics, voice, audio, use, sound"
+5,1454,11.0,4.313,10.45,65.89,26.99,84.24,30.4,96.4,1.2,0.28,85.0,"pedal, amp, cable, cables, sound, pedals, power, bass"
+6,1521,11.5,3.868,22.09,55.62,26.99,43.32,29.52,45.0,0.09,0.16,91.0,"works, light, lights, work, worked, works great, remote, bright"
+7,824,6.23,4.434,7.77,70.75,26.99,53.47,29.25,70.2,0.09,0.88,89.7,"stand, sturdy, stands, holds, music, music stand, hold, heavy"
+8,976,7.38,4.358,9.43,66.91,26.99,38.25,30.23,63.8,0.11,0.32,91.9,"strap, case, fit, bag, fits, guitar, comfortable, straps"
+9,1661,12.56,4.602,5.24,77.9,26.99,70.75,33.29,57.5,0.76,0.21,85.9,"sound, play, instrument, fun, sounds, beautiful, loves, gift"

@@ -1,0 +1,97 @@
+=== PHASE 2 - STEP 6: PATTERN DISCOVERY & CLUSTERING AUDIT REPORT ===
+
+1. HYPERPARAMETER SELECTION JUSTIFICATION:
+   - Evaluated Range: k in [2 .. 10] on L2-Normalized 50-D Semantic Embeddings.
+   - Selected Optimal k*: 10
+   - Rationale: While k=2,3 capture coarse polarity/verbosity splits, selecting the Silhouette peak
+     within k >= 4 resolves distinct musical product categories AND sentiment failure modes.
+
+ k      inertia  silhouette  calinski_harabasz  smallest_cluster_pct
+ 2 12124.535156    0.091958        1195.532964                 12.25
+ 3 11454.871094    0.085044        1019.123300                 12.17
+ 4 10895.002930    0.093894         940.725901                 12.08
+ 5 10586.012695    0.092907         822.540275                 12.04
+ 6 10333.656250    0.093760         738.612591                 11.96
+ 7 10134.841797    0.092726         670.749530                  8.70
+ 8  9953.184570    0.093995         619.833065                  8.49
+ 9  9793.871094    0.094462         578.005366                  6.26
+10  9657.714844    0.095465         541.685959                  6.23
+
+2. PATTERN STABILITY VERIFICATION (ADJUSTED RAND INDEX & NMI):
+   - Mean Seed Stability ARI (5 random seeds):       0.8469
+   - Mean 80% Subsample Stability ARI (5 runs):      0.8140
+perturbation_type             setting      ari      nmi
+   Seed Variation              seed=7 0.866963 0.875025
+   Seed Variation            seed=100 0.891327 0.894241
+   Seed Variation           seed=2023 0.775590 0.804787
+   Seed Variation            seed=777 0.940987 0.932890
+   Seed Variation            seed=999 0.759566 0.790521
+    80% Subsample     subsample_run_1 0.765333 0.795825
+    80% Subsample     subsample_run_2 0.928134 0.919297
+    80% Subsample     subsample_run_3 0.757474 0.788675
+    80% Subsample     subsample_run_4 0.784073 0.811125
+    80% Subsample     subsample_run_5 0.834944 0.847632
+    Scaling Shift    Unnormalized_PCA 0.715359 0.767324
+    Scaling Shift ZScore_EqualVar_PCA 0.351537 0.468571
+
+3. MULTIMODAL CLUSTER PROFILES & LINK TO RESEARCH QUESTION:
+   • Cluster C0 (1,120 reviews | 8.47% of Train):
+     - Distinctive Terms: picks, sticks, reeds, pick, look, grip, work, ones
+     - Rating Profile:    Mean = 4.288 ★ | Critical (<=2★) = 10.54% | 5★ = 65.0%
+     - Price & Length:    Median Price = $24.99 (Missing: 28.48%) | Mean Words = 53.3
+     - Domain Signals:    Audio Mentions = 0.21 | Build Mentions = 0.28
+
+   • Cluster C1 (1,689 reviews | 12.77% of Train):
+     - Distinctive Terms: strings, guitar, string, guitars, tuner, tune, tuning, ukulele
+     - Rating Profile:    Mean = 4.436 ★ | Critical (<=2★) = 8.29% | 5★ = 70.69%
+     - Price & Length:    Median Price = $26.99 (Missing: 30.91%) | Mean Words = 84.3
+     - Domain Signals:    Audio Mentions = 1.12 | Build Mentions = 0.34
+
+   • Cluster C2 (1,577 reviews | 11.93% of Train):
+     - Distinctive Terms: stars, stars great, stars good, stars works, stars nice, stars love, stars perfect, star
+     - Rating Profile:    Mean = 4.556 ★ | Critical (<=2★) = 5.9% | 5★ = 76.03%
+     - Price & Length:    Median Price = $26.99 (Missing: 34.18%) | Mean Words = 8.6
+     - Domain Signals:    Audio Mentions = 0.08 | Build Mentions = 0.05
+
+   • Cluster C3 (1,313 reviews | 9.93% of Train):
+     - Distinctive Terms: good, great, product, great product, good good, quality, great great, price
+     - Rating Profile:    Mean = 4.709 ★ | Critical (<=2★) = 3.2% | 5★ = 82.25%
+     - Price & Length:    Median Price = $26.99 (Missing: 27.11%) | Mean Words = 13.3
+     - Domain Signals:    Audio Mentions = 0.04 | Build Mentions = 0.08
+
+   • Cluster C4 (1,089 reviews | 8.24% of Train):
+     - Distinctive Terms: mic, microphone, recording, mics, voice, audio, use, sound
+     - Rating Profile:    Mean = 4.230 ★ | Critical (<=2★) = 11.57% | 5★ = 60.51%
+     - Price & Length:    Median Price = $26.99 (Missing: 30.03%) | Mean Words = 97.9
+     - Domain Signals:    Audio Mentions = 0.9 | Build Mentions = 0.27
+
+   • Cluster C5 (1,454 reviews | 11.0% of Train):
+     - Distinctive Terms: pedal, amp, cable, cables, sound, pedals, power, bass
+     - Rating Profile:    Mean = 4.313 ★ | Critical (<=2★) = 10.45% | 5★ = 65.89%
+     - Price & Length:    Median Price = $26.99 (Missing: 30.4%) | Mean Words = 96.4
+     - Domain Signals:    Audio Mentions = 1.2 | Build Mentions = 0.28
+
+   • Cluster C6 (1,521 reviews | 11.5% of Train):
+     - Distinctive Terms: works, light, lights, work, worked, works great, remote, bright
+     - Rating Profile:    Mean = 3.868 ★ | Critical (<=2★) = 22.09% | 5★ = 55.62%
+     - Price & Length:    Median Price = $26.99 (Missing: 29.52%) | Mean Words = 45.0
+     - Domain Signals:    Audio Mentions = 0.09 | Build Mentions = 0.16
+
+   • Cluster C7 (824 reviews | 6.23% of Train):
+     - Distinctive Terms: stand, sturdy, stands, holds, music, music stand, hold, heavy
+     - Rating Profile:    Mean = 4.434 ★ | Critical (<=2★) = 7.77% | 5★ = 70.75%
+     - Price & Length:    Median Price = $26.99 (Missing: 29.25%) | Mean Words = 70.2
+     - Domain Signals:    Audio Mentions = 0.09 | Build Mentions = 0.88
+
+   • Cluster C8 (976 reviews | 7.38% of Train):
+     - Distinctive Terms: strap, case, fit, bag, fits, guitar, comfortable, straps
+     - Rating Profile:    Mean = 4.358 ★ | Critical (<=2★) = 9.43% | 5★ = 66.91%
+     - Price & Length:    Median Price = $26.99 (Missing: 30.23%) | Mean Words = 63.8
+     - Domain Signals:    Audio Mentions = 0.11 | Build Mentions = 0.32
+
+   • Cluster C9 (1,661 reviews | 12.56% of Train):
+     - Distinctive Terms: sound, play, instrument, fun, sounds, beautiful, loves, gift
+     - Rating Profile:    Mean = 4.602 ★ | Critical (<=2★) = 5.24% | 5★ = 77.9%
+     - Price & Length:    Median Price = $26.99 (Missing: 33.29%) | Mean Words = 57.5
+     - Domain Signals:    Audio Mentions = 0.76 | Build Mentions = 0.21
+
