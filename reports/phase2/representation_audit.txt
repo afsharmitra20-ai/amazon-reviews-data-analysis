@@ -1,0 +1,39 @@
+=== PHASE 2 - STEP 4: REPRESENTATION AUDIT REPORT ===
+
+1. REPRESENTATION COMPARISON & SPECIFICATIONS:
+   • Classical Representation: Sparse TF-IDF (Unigrams & Bigrams)
+     - Train Shape: (13224, 5000) (Sparsity: 99.55%)
+     - Val Shape:   (2792, 5000)
+     - Test Shape:  (3984, 5000)
+
+   • Modern Semantic Representation: Pre-trained Sentence-Transformers (all-MiniLM-L6-v2)
+     - Embedding Dimension: 384 (Dense L2-normalized vectors)
+     - Train Shape: (13224, 384)
+     - Val Shape:   (2792, 384)
+     - Test Shape:  (3984, 384)
+
+   • Tabular Structured Modality:
+     - Features Count: 17
+     - Feature List: price_imputed, price_is_missing, price_scaled, caps_ratio, exclamation_density, question_density, avg_word_length, lexical_diversity, audio_quality_mentions, build_durability_mentions, value_price_mentions, feature_bullets_count, has_user_images, has_product_images, review_age_days, price_to_word_ratio, verified_purchase
+
+2. TOP 20 HIGH-SALIENCE TOKENS IN TRAINING CORPUS (MEAN TF-IDF):
+    1. great              (Mean TF-IDF: 0.0417)
+    2. stars              (Mean TF-IDF: 0.0375)
+    3. good               (Mean TF-IDF: 0.034)
+    4. works              (Mean TF-IDF: 0.0228)
+    5. br                 (Mean TF-IDF: 0.0207)
+    6. sound              (Mean TF-IDF: 0.0201)
+    7. nice               (Mean TF-IDF: 0.0199)
+    8. quality            (Mean TF-IDF: 0.0196)
+    9. guitar             (Mean TF-IDF: 0.0172)
+   10. price              (Mean TF-IDF: 0.0171)
+   11. product            (Mean TF-IDF: 0.0169)
+   12. use                (Mean TF-IDF: 0.0168)
+   13. just               (Mean TF-IDF: 0.0162)
+   14. like               (Mean TF-IDF: 0.0159)
+   15. love               (Mean TF-IDF: 0.0155)
+   16. easy               (Mean TF-IDF: 0.014)
+   17. perfect            (Mean TF-IDF: 0.0136)
+   18. little             (Mean TF-IDF: 0.012)
+   19. work               (Mean TF-IDF: 0.0117)
+   20. really             (Mean TF-IDF: 0.0117)
