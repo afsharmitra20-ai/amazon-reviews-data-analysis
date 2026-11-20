@@ -1,0 +1,31 @@
+=== PHASE 2 - STEP 1: ITEM-DISJOINT SPLIT AUDIT REPORT ===
+
+Total Dataset Size: 20,000 rows
+• Train Set: 13,224 rows (66.12%) | 7,996 unique products
+• Val Set:   2,792 rows (13.96%) | 1,713 unique products
+• Test Set:  3,984 rows (19.92%) | 1,714 unique products
+
+--- LEAKAGE SANITY VERIFICATION ---
+• Item Overlap (Train ∩ Val):  0 items (MUST BE 0)
+• Item Overlap (Train ∩ Test): 0 items (MUST BE 0)
+• Item Overlap (Val ∩ Test):   0 items (MUST BE 0)
+• Zero-Leakage Status: PASSED (Strictly Item-Disjoint Cold-Start Partition)
+
+--- USER OVERLAP INCIDENCE (OBSERVATIONAL AUDIT) ---
+• User Overlap (Train ∩ Val):  752 users
+• User Overlap (Train ∩ Test): 823 users
+• User Overlap (Val ∩ Test):   345 users
+
+--- TARGET DISTRIBUTION BALANCE (PERCENTAGES) ---
+Rating    Train (%)      Val (%)        Test (%)       
+-------------------------------------------------------
+1         5.58           5.84           6.58           
+2         3.87           3.69           4.24           
+3         6.64           5.95           7.18           
+4         14.38          14.54          16.01          
+5         69.53          69.99          65.99          
+
+--- QUARANTINED LEAKAGE COLUMNS (NEVER TO BE USED AS FEATURES) ---
+• [FORBIDDEN FEATURE] average_rating: Target / Temporal feedback leakage risk.
+• [FORBIDDEN FEATURE] rating_number: Target / Temporal feedback leakage risk.
+• [FORBIDDEN FEATURE] helpful_vote: Target / Temporal feedback leakage risk.
