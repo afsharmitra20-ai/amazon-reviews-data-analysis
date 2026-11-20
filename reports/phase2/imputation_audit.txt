@@ -1,0 +1,30 @@
+=== PHASE 2 - STEP 2: PREPROCESSING & IMPUTATION AUDIT REPORT ===
+
+1. MISSINGNESS MECHANISM & JUSTIFICATION:
+   - Variable: price_raw (Missing in ~33% of instances)
+   - Mechanism: MNAR / MAR (Discontinued instruments, accessory variants, unpriced listings)
+   - Handling Method:
+     * Imputed using Training Set Median (Robust to high-value luthier outliers)
+     * Generated binary indicator 'price_is_missing' to retain missingness information
+     * Applied log1p transformation to mitigate severe right-skewness
+     * Standardized using Training set log-mean and log-std
+
+2. LEARNED PARAMETERS (TRAIN SET ONLY - ZERO LEAKAGE):
+   - Fitted Median Price: $26.99
+   - Fitted Log1p Price Mean: 3.4525
+   - Fitted Log1p Price Std:  0.8935
+   - Top Stores Monitored: 50
+
+3. SPLIT MISSINGNESS & SCALING VERIFICATION:
+   - Train Set: Missing Price Rate = 30.57%
+     Mean Scaled Price: -0.0000 | Std: 1.0000
+     Mean Word Count: 57.76 words
+   - Val Set: Missing Price Rate = 30.44%
+     Mean Scaled Price: -0.0232 | Std: 1.0141
+     Mean Word Count: 60.26 words
+   - Test Set: Missing Price Rate = 45.68%
+     Mean Scaled Price: -0.1604 | Std: 0.8331
+     Mean Word Count: 52.98 words
+
+4. QUARANTINED LEAKAGE VERIFICATION:
+   - Columns 'average_rating', 'rating_number', 'helpful_vote' successfully DROPPED from all splits.
